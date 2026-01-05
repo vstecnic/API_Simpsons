@@ -134,10 +134,10 @@ function createCharacterCard(character) {
     const name = character.name || 'Unknown';
     const occupation = character.occupation || 'Unknown occupation';
 
-    // La API usa "portrait_path" que es una ruta relativa
-    const imagePath = character.portrait_path || '';
-    const image = imagePath
-        ? `https://thesimpsonsapi.com${imagePath}`
+    // Las imágenes se sirven desde el CDN usando el ID del personaje
+    const characterId = character.id;
+    const image = characterId
+        ? `https://cdn.thesimpsonsapi.com/500/character/${characterId}.webp`
         : 'https://via.placeholder.com/300x400?text=No+Image';
 
     const status = character.status || 'Unknown';
