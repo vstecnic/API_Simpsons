@@ -147,7 +147,7 @@ function createCharacterCard(character) {
     const occupation = character.occupation || 'Unknown occupation';
 
     // Las imágenes se sirven desde el CDN usando el ID del personaje
-    const characterId = character.id;
+    const characterId = character.id || 0;
     const image = characterId
         ? `https://cdn.thesimpsonsapi.com/500/character/${characterId}.webp`
         : 'https://via.placeholder.com/300x400?text=No+Image';
@@ -160,7 +160,6 @@ function createCharacterCard(character) {
     const age = character.age || 'Unknown';
 
     const statusClass = status.toLowerCase();
-    const characterId = character.id || Math.random();
 
     return `
         <div class="character-card" onclick="showCharacterDetails(${characterId})">
