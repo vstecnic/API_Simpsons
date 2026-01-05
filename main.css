@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --simpsons-yellow: #ffd90f;
+    --rickmorty-green: #97ce4c;
+    --pokemon-red: #ee1515;
+    --pokemon-blue: #3b4cca;
+    --text-dark: #2c3e50;
+    --text-gray: #6b7280;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem 1rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+main.container {
+    padding: 3rem 1rem;
+}
+
+.series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.series-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.series-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.series-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    transition: height 0.3s ease;
+}
+
+.simpsons-card::before {
+    background: linear-gradient(90deg, var(--simpsons-yellow), #ff9500);
+}
+
+.rickmorty-card::before {
+    background: linear-gradient(90deg, var(--rickmorty-green), #00b8a9);
+}
+
+.pokemon-card::before {
+    background: linear-gradient(90deg, var(--pokemon-red), var(--pokemon-blue));
+}
+
+.series-card:hover::before {
+    height: 8px;
+}
+
+.card-image-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.simpsons-card .card-image-container {
+    background: linear-gradient(135deg, #ffd90f 0%, #ffed4e 100%);
+}
+
+.rickmorty-card .card-image-container {
+    background: linear-gradient(135deg, #97ce4c 0%, #b8e986 100%);
+}
+
+.pokemon-card .card-image-container {
+    background: linear-gradient(135deg, #ee1515 0%, #feca1b 100%);
+}
+
+.card-image {
+    max-width: 80%;
+    max-height: 150px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.series-card:hover .card-image {
+    transform: scale(1.1) rotate(-2deg);
+}
+
+.card-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.card-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.card-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.simpsons-card .card-button {
+    background: linear-gradient(90deg, var(--simpsons-yellow), #ff9500);
+    color: var(--text-dark);
+}
+
+.rickmorty-card .card-button {
+    background: linear-gradient(90deg, var(--rickmorty-green), #00b8a9);
+    color: white;
+}
+
+.pokemon-card .card-button {
+    background: linear-gradient(90deg, var(--pokemon-red), var(--pokemon-blue));
+    color: white;
+}
+
+.pokemon-card .card-button.coming-soon {
+    background: linear-gradient(90deg, #9ca3af, #6b7280);
+    cursor: not-allowed;
+}
+
+.series-card:hover .card-button {
+    transform: translateX(5px);
+}
+
+.pokemon-card:hover .card-button.coming-soon {
+    transform: none;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.series-card:hover .arrow {
+    transform: translateX(5px);
+}
+
+.pokemon-card:hover .coming-soon .arrow {
+    transform: none;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1.1rem;
+    }
+
+    .series-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+    }
+
+    .card-image-container {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 2rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+}

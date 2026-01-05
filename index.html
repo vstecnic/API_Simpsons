@@ -3,49 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Simpsons API - Characters</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>API Characters Explorer</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>🍩 The Simpsons Characters</h1>
-            <p>Explore all your favorite characters from Springfield!</p>
+            <h1>🎬 Bienvenido a la API de Personajes</h1>
+            <p>Explora tus series favoritas y conoce todos sus personajes</p>
         </div>
     </header>
 
     <main class="container">
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search characters by name...">
-                <button id="searchBtn">Search</button>
-            </div>
-            <div class="filter-box">
-                <button id="showAllBtn" class="active">Show All Characters</button>
-                <button id="loadMoreBtn" style="display: none;">Load More</button>
-            </div>
-        </div>
+        <div class="series-grid">
+            <!-- The Simpsons Card -->
+            <a href="simpsons.html" class="series-card simpsons-card">
+                <div class="card-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/The_Simpsons_yellow_logo.svg/800px-The_Simpsons_yellow_logo.svg.png" alt="The Simpsons" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">The Simpsons</h2>
+                    <p class="card-description">Explora más de 1,000 personajes de Springfield con información detallada, imágenes y frases icónicas.</p>
+                    <div class="card-stats">
+                        <span class="stat">📊 1,182 personajes</span>
+                        <span class="stat">🎭 768 episodios</span>
+                    </div>
+                    <div class="card-button">
+                        <span>Ver Personajes</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+            </a>
 
-        <div id="loading" class="loading">
-            <div class="spinner"></div>
-            <p>Loading characters...</p>
-        </div>
+            <!-- Rick and Morty Card -->
+            <a href="rickandmorty.html" class="series-card rickmorty-card">
+                <div class="card-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png" alt="Rick and Morty" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Rick and Morty</h2>
+                    <p class="card-description">Descubre los personajes del multiverso de Rick y Morty, con detalles de especies, ubicaciones y episodios.</p>
+                    <div class="card-stats">
+                        <span class="stat">📊 826 personajes</span>
+                        <span class="stat">🌍 126 ubicaciones</span>
+                    </div>
+                    <div class="card-button">
+                        <span>Ver Personajes</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+            </a>
 
-        <div id="error" class="error" style="display: none;">
-            <p>Oops! Something went wrong. D'oh!</p>
-            <button id="retryBtn">Try Again</button>
+            <!-- Pokemon Card -->
+            <a href="pokemon.html" class="series-card pokemon-card">
+                <div class="card-image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/800px-International_Pok%C3%A9mon_logo.svg.png" alt="Pokemon" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Pokémon</h2>
+                    <p class="card-description">Explora el mundo Pokémon con información completa de todas las especies, tipos y evoluciones.</p>
+                    <div class="card-stats">
+                        <span class="stat">📊 1,000+ pokémon</span>
+                        <span class="stat">🎮 Múltiples regiones</span>
+                    </div>
+                    <div class="card-button coming-soon">
+                        <span>Próximamente</span>
+                        <span class="arrow">⏳</span>
+                    </div>
+                </div>
+            </a>
         </div>
-
-        <div id="charactersGrid" class="characters-grid"></div>
     </main>
 
     <footer>
         <div class="container">
-            <p>Data provided by <a href="https://thesimpsonsapi.com/" target="_blank">The Simpsons API</a></p>
-            <p>Made with ❤️ for Simpsons fans</p>
+            <p>Proyecto de consumo de APIs públicas</p>
+            <p>Hecho con ❤️ para los fans de las series animadas</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>

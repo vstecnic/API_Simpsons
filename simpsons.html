@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Simpsons API - Characters</title>
+    <link rel="stylesheet" href="simpsons.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Volver al inicio</a>
+            <h1>🍩 The Simpsons Characters</h1>
+            <p>Explore all your favorite characters from Springfield!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search characters by name...">
+                <button id="searchBtn">Search</button>
+            </div>
+            <div class="filter-box">
+                <button id="showAllBtn" class="active">Show All Characters</button>
+                <button id="loadMoreBtn" style="display: none;">Load More</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading characters...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p>Oops! Something went wrong. D'oh!</p>
+            <button id="retryBtn">Try Again</button>
+        </div>
+
+        <div id="charactersGrid" class="characters-grid"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Data provided by <a href="https://thesimpsonsapi.com/" target="_blank">The Simpsons API</a></p>
+            <p>Made with ❤️ for Simpsons fans</p>
+        </div>
+    </footer>
+
+    <script src="simpsons.js"></script>
+</body>
+</html>

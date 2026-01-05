@@ -5,29 +5,48 @@
 }
 
 :root {
-    --simpsons-yellow: #ffd90f;
-    --simpsons-blue: #75c6ef;
-    --simpsons-pink: #ffc0cb;
+    --rickmorty-green: #97ce4c;
+    --rickmorty-blue: #00b8a9;
+    --rickmorty-purple: #9c27b0;
     --text-dark: #2c3e50;
     --text-gray: #6b7280;
     --green: #10b981;
     --red: #ef4444;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 10px 25px rgba(255, 217, 15, 0.4);
+    --shadow-hover: 0 10px 25px rgba(151, 206, 76, 0.4);
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #75c6ef 0%, #ffd90f 100%);
+    background: linear-gradient(135deg, #00b8a9 0%, #97ce4c 100%);
     min-height: 100vh;
     color: var(--text-dark);
 }
 
 header {
-    background: var(--simpsons-yellow);
+    background: var(--rickmorty-green);
     padding: 2rem 1rem;
     text-align: center;
     box-shadow: var(--shadow);
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
 }
 
 header h1 {
@@ -79,14 +98,14 @@ main.container {
 
 .search-box input:focus {
     outline: none;
-    border-color: var(--simpsons-yellow);
+    border-color: var(--rickmorty-green);
 }
 
 .search-box button,
 .filter-box button,
 .error button {
     padding: 0.75rem 1.5rem;
-    background: var(--simpsons-yellow);
+    background: var(--rickmorty-green);
     color: var(--text-dark);
     border: none;
     border-radius: 8px;
@@ -115,6 +134,21 @@ main.container {
     color: white;
 }
 
+.filter-box select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.filter-box select:focus {
+    outline: none;
+    border-color: var(--rickmorty-green);
+}
+
 .loading,
 .error {
     text-align: center;
@@ -128,7 +162,7 @@ main.container {
     width: 50px;
     height: 50px;
     border: 4px solid #f3f4f6;
-    border-top: 4px solid var(--simpsons-yellow);
+    border-top: 4px solid var(--rickmorty-green);
     border-radius: 50%;
     margin: 0 auto 1rem;
     animation: spin 1s linear infinite;
@@ -160,8 +194,8 @@ main.container {
 
 .character-card:hover {
     transform: scale(1.05);
-    border-color: var(--simpsons-yellow);
-    background-color: #fffbeb;
+    border-color: var(--rickmorty-green);
+    background-color: #f0fdf4;
     box-shadow: var(--shadow-hover);
 }
 
@@ -170,7 +204,7 @@ main.container {
     width: 100%;
     height: 300px;
     overflow: hidden;
-    background: linear-gradient(135deg, #75c6ef 0%, #a8e6ff 100%);
+    background: linear-gradient(135deg, #00b8a9 0%, #97ce4c 100%);
 }
 
 .card-image {
@@ -195,6 +229,17 @@ main.container {
     text-transform: uppercase;
     background: white;
     box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.status-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .status-badge.alive {
@@ -202,14 +247,26 @@ main.container {
     border: 2px solid var(--green);
 }
 
-.status-badge.deceased {
+.status-badge.alive::before {
+    background: var(--green);
+}
+
+.status-badge.dead {
     color: var(--red);
     border: 2px solid var(--red);
+}
+
+.status-badge.dead::before {
+    background: var(--red);
 }
 
 .status-badge.unknown {
     color: var(--text-gray);
     border: 2px solid var(--text-gray);
+}
+
+.status-badge.unknown::before {
+    background: var(--text-gray);
 }
 
 .card-content {
@@ -224,48 +281,47 @@ main.container {
     font-weight: bold;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.card-occupation {
-    color: var(--text-gray);
+.card-species {
+    color: var(--rickmorty-green);
     font-size: 0.95rem;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
-}
-
-.card-quote {
-    font-style: italic;
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    border-left: 3px solid var(--simpsons-yellow);
-    padding-left: 0.8rem;
-    margin-top: auto;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
 }
 
 .card-info {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-bottom: 0.8rem;
     font-size: 0.9rem;
     color: var(--text-gray);
 }
 
-.card-info span {
+.card-info-item {
     display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.card-info-item strong {
+    color: var(--text-dark);
+    min-width: 70px;
+}
+
+.card-location {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.card-location strong {
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 0.3rem;
 }
 
 footer {
@@ -277,7 +333,7 @@ footer {
 }
 
 footer a {
-    color: var(--simpsons-yellow);
+    color: var(--rickmorty-green);
     text-decoration: none;
     font-weight: 600;
 }
@@ -310,6 +366,12 @@ footer p {
 
     .search-box {
         flex-direction: column;
+    }
+
+    .back-button {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
     }
 }
 

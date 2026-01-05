@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty API - Characters</title>
+    <link rel="stylesheet" href="rickandmorty.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Volver al inicio</a>
+            <h1>🛸 Rick and Morty Characters</h1>
+            <p>Explore all characters from across the multiverse!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search characters by name...">
+                <button id="searchBtn">Search</button>
+            </div>
+            <div class="filter-box">
+                <button id="showAllBtn" class="active">Show All Characters</button>
+                <select id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="alive">Alive</option>
+                    <option value="dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <select id="speciesFilter">
+                    <option value="">All Species</option>
+                    <option value="human">Human</option>
+                    <option value="alien">Alien</option>
+                    <option value="humanoid">Humanoid</option>
+                    <option value="robot">Robot</option>
+                </select>
+                <button id="loadMoreBtn" style="display: none;">Load More</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading characters...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            <p>Oops! Something went wrong. Wubba Lubba Dub Dub!</p>
+            <button id="retryBtn">Try Again</button>
+        </div>
+
+        <div id="charactersGrid" class="characters-grid"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Data provided by <a href="https://rickandmortyapi.com/" target="_blank">The Rick and Morty API</a></p>
+            <p>Made with ❤️ for Rick and Morty fans</p>
+        </div>
+    </footer>
+
+    <script src="rickandmorty.js"></script>
+</body>
+</html>
