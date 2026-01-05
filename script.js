@@ -17,6 +17,7 @@ let currentPage = 0;
 let totalPages = 1;
 let isSearching = false;
 let searchQuery = '';
+let allCharactersMap = new Map(); // Store characters by ID
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,6 +38,7 @@ function setupEventListeners() {
         isSearching = false;
         searchQuery = '';
         currentPage = 0;
+        allCharactersMap.clear();
         charactersGrid.innerHTML = '';
         loadCharacters(0);
     });
@@ -58,6 +60,7 @@ async function loadCharacters(page) {
 
         console.log('Fetching:', url);
         const response = await fetch(url);
+        console.log('Response status:', response.status);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -65,6 +68,7 @@ async function loadCharacters(page) {
 
         const data = await response.json();
         console.log('API Response:', data);
+        console.log('Results count:', data.results ? data.results.length : 0);
 
         // La API devuelve: { count, next, prev, pages, results }
         if (!data.results || data.results.length === 0) {
@@ -119,12 +123,20 @@ function handleSearch() {
     isSearching = true;
     searchQuery = query;
     currentPage = 0;
+    allCharactersMap.clear();
     charactersGrid.innerHTML = '';
     loadCharacters(0);
 }
 
 // Append characters to grid
 function appendCharacters(characters) {
+    // Store characters in map for later reference
+    characters.forEach(char => {
+        if (char.id) {
+            allCharactersMap.set(char.id, char);
+        }
+    });
+
     const cardsHTML = characters.map(character => createCharacterCard(character)).join('');
     charactersGrid.insertAdjacentHTML('beforeend', cardsHTML);
 }
@@ -151,7 +163,7 @@ function createCharacterCard(character) {
     const characterId = character.id || Math.random();
 
     return `
-        <div class="character-card" onclick='showCharacterDetails(${JSON.stringify(character).replace(/'/g, "&#39;")})'>
+        <div class="character-card" onclick="showCharacterDetails(${characterId})">
             <div class="card-image-container">
                 <img src="${image}" alt="${name}" class="card-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400?text=No+Image'">
                 <span class="status-badge ${statusClass}">${status}</span>
@@ -170,7 +182,14 @@ function createCharacterCard(character) {
 }
 
 // Show character details
-function showCharacterDetails(character) {
+function showCharacterDetails(characterId) {
+    const character = allCharactersMap.get(characterId);
+
+    if (!character) {
+        console.error('Character not found:', characterId);
+        return;
+    }
+
     console.log('Character details:', character);
 
     const phrases = character.phrases && character.phrases.length > 0
