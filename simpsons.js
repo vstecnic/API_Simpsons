@@ -15,6 +15,7 @@ const retryBtn = document.getElementById('retryBtn');
 // State
 let currentPage = 0;
 let totalPages = 1;
+let nextPageUrl = null;
 let isSearching = false;
 let searchQuery = '';
 let allCharactersMap = new Map(); // Store characters by ID
@@ -82,6 +83,7 @@ async function loadCharacters(page) {
 
         currentPage = page;
         totalPages = data.pages || 1;
+        nextPageUrl = data.next; // Guardar el URL completo del next
 
         // Si es la primera página, limpiamos el grid y el mapa
         if (page === 0) {
@@ -109,7 +111,17 @@ async function loadCharacters(page) {
 
 // Load more characters (next page)
 function loadMoreCharacters() {
-    loadCharacters(currentPage + 1);
+    // Extraer el número de página del URL next
+    if (nextPageUrl) {
+        const match = nextPageUrl.match(/page=(\d+)/);
+        if (match) {
+            const nextPage = parseInt(match[1]);
+            loadCharacters(nextPage);
+        } else {
+            // Fallback: incrementar página actual
+            loadCharacters(currentPage + 1);
+        }
+    }
 }
 
 // Search characters by name
