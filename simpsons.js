@@ -83,19 +83,20 @@ async function loadCharacters(page) {
         currentPage = page;
         totalPages = data.pages || 1;
 
-        // Si es la primera página, limpiamos el grid
+        // Si es la primera página, limpiamos el grid y el mapa
         if (page === 0) {
             charactersGrid.innerHTML = '';
+            allCharactersMap.clear();
         }
 
         // Renderizar personajes
         appendCharacters(data.results);
 
-        // Mostrar/ocultar botón "Load More"
-        if (page + 1 >= totalPages) {
-            loadMoreBtn.style.display = 'none';
-        } else {
+        // Mostrar/ocultar botón "Load More" basado en si existe "next"
+        if (data.next) {
             loadMoreBtn.style.display = 'block';
+        } else {
+            loadMoreBtn.style.display = 'none';
         }
 
         hideLoading();
